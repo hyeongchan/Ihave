@@ -25,7 +25,10 @@ SECRET_KEY = '3+d@_zbh6*rz&54ry!x=5a9fk9=w6fymv5njaoc7@b__ju1@-+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '.ap-northeast-2.compute.amazonaws.com',
+]
 
 
 # Application definition
@@ -76,18 +79,18 @@ WSGI_APPLICATION = 'cookproj.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'root',
-        'PASSWORD': 'gudcks98!',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    },
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     },
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'django',
+#        'USER': 'root',
+#        'PASSWORD': 'gudcks98!',
+#        'HOST': '127.0.0.1',
+#        'PORT': '3306',
+#    },
 }
 
 
