@@ -33,11 +33,11 @@
     <!-- ****** Breadcumb Area End ****** -->
 
     <!-- ****** Archive Area Start ****** -->
-    <section class="archive-area section_padding_80">
+    <section class="archive-area section_padding_80 d-flex justify-content-center">
         <div class="container">
             <div class="row">
                 <!--{% init_counter %}-->
-                {% for recipe in recipes %}
+                {% for recipe in all %}
 
                 <!-- Single Post -->
                 <div class="col-12 col-md-6 col-lg-4">
@@ -45,7 +45,7 @@
                         <!-- Post Thumb -->
                         <div class="post-thumb">
                         {% comment %} 썸네일 넣는 공간 {% endcomment %}
-                            <img src="{%static '{{recipe.url}}'%}" alt="">
+                            <img src="{{recipe.image.url}}" alt="">
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
@@ -86,7 +86,55 @@
                     </div>
                 </div>
                 {% endfor %}
+{% for recipe in all %}
 
+                <!-- Single Post -->
+                <div class="col-12 col-md-6 col-lg-4 ">
+                    <div class="single-post wow fadeInUp" data-wow-delay="{% delay_counter %}s">
+                        <!-- Post Thumb -->
+                        <div class="post-thumb">
+                        {% comment %} 썸네일 넣는 공간 {% endcomment %}
+                            <img src="{{recipe.image.url}}" alt="">
+                        </div>
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            <div class="post-meta d-flex">
+                                <div class="post-author-date-area d-flex">
+                                    <!-- Post Author -->
+                                    <div class="post-author">
+                                        <a href="#">관리자</a>
+                                    </div>
+                                    <!-- Post Date -->
+                                    <div class="post-date">
+                                        <a href="#">May 19, 2017</a>
+                                    </div>
+                                </div>
+                                <!-- Post Comment & Share Area -->
+                                <div class="post-comment-share-area d-flex">
+                                    <!-- Post Favourite -->
+                                    <div class="post-favourite">
+                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
+                                    </div>
+                                    <!-- Post Comments -->
+                                    <div class="post-comments">
+                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
+                                    </div>
+                                    {% comment %} 공유기능  {% endcomment %}
+                                    {% comment %} <!-- Post Share -->
+                                    <div class="post-share">
+                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                    </div> {% endcomment %}
+                                </div>
+                            </div>
+                            <a href="#">
+                            {% comment %} 레시피 요리 이름 {% endcomment %}
+                                <h6 class="post-headline food-time text-center">걸리는 시간<h6>
+                                <h4 class="post-headline text-center">{{recipe.name}}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
                 <div class="col-12">
                     <div class="pagination-area d-sm-flex mt-15">
                         <nav aria-label="#">

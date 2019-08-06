@@ -10,7 +10,7 @@
         {% for category,items in data.items %}
             <optgroup label="{{category}}">                                
                 {% for ingredient in items %}
-                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient}}">{{ingredient}}</option>
+                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient}}"><span>{{ingredient}}</span></option>
                 {% endfor %}
             </optgroup>
         {% endfor %}
@@ -50,7 +50,7 @@
         if((selectedItem.attr("value1"))==0){   
             $(selectedItem).attr("value1",1);
             $(copyItemLeft).clone().appendTo("#rightValues");
-            $(selectedItem).attr("style","background-color:rgb(207,204,204);")
+            $(selectedItem":first-child").attr("style","background-color:rgb(207,204,204);")
         }
     });
 
@@ -66,7 +66,7 @@
                 childchildren.each(function(){
                     if($(this).attr("value2")==id){
                         $(this).attr("value1",0);
-                        $(this).attr("style","")
+                        $(this":first-child").attr("style","")
                     }
                 });
             }
