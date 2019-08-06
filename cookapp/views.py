@@ -15,11 +15,8 @@ def home(request):
         print(categories)
         return render(request, 'cookapp/index.html', {'data' : dict(data)})
     else :
-        print("in")
         ingr = Ingredient.objects.values_list('name', flat=True)
-        print("1")
         full_list = list(ingr)
-        print("2")
         all = Recipe.objects
         print("all : ",all.all())
         print("3")
