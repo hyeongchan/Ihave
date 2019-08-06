@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    '127.0.0.1',
+    '.amazonaws.com',
     '.ap-northeast-2.compute.amazonaws.com',
 ]
 
@@ -80,18 +82,18 @@ WSGI_APPLICATION = 'cookproj.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     },
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'django',
-#        'USER': 'root',
-#        'PASSWORD': 'gudcks98!',
-#        'HOST': '127.0.0.1',
-#        'PORT': '3306',
-#    },
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',
+        'USER': 'ubuntu',
+        'PASSWORD': 'gudcks98!',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
 }
 
 
@@ -136,6 +138,5 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
