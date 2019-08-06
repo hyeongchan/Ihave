@@ -7,14 +7,11 @@ def home(request):
         ingredients = Ingredient.objects
         categories = Ingredient.objects.values_list('category', flat=True)
         categories = list(set(categories))
-        code = [1, 2, 3, 4, 5]
+        code = [1, 2, 3, 4, 5,6]
         return render(request, 'home.html', {'ingredients' : ingredients, 'code' : code, 'categories' : categories})
     else :
-        print("in")
         ingr = Ingredient.objects.values_list('name', flat=True)
-        print("1")
         full_list = list(ingr)
-        print("2")
         all = Recipe.objects
         print("all : ",all.all())
         print("3")
