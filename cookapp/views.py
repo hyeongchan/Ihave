@@ -36,6 +36,7 @@ def home(request):
         for r in sub:
             print("r : ",r)
             recipe = recipe.exclude(ingredients__name = r)
+            print("in loop, recipe : ",recipe)
         print("end for")
         # print(recipe)
         print("7")
@@ -48,4 +49,4 @@ def home(request):
                 add.append(r)
             print("add : ",add)
         print("8")
-        return render(request, 'cookapp/list.html', {'all':recipe, 'recipes':recipe, 'add':add})
+        return render(request, 'cookapp/list.html', {'all':all.all(), 'recipes':recipe, 'add':add})
