@@ -1,21 +1,28 @@
 from django.shortcuts import render
 from .models import Ingredient, Recipe
+from collections import defaultdict
 
 def home(request):
     if request.method == 'GET':
-        print("one")
-        ingredients = Ingredient.objects
+        ingredients = Ingredient.objects.all().order_by('category')
+        data = defaultdict(list)
+        for ingredient in ingredients:
+            data[ingredient.category].append(ingredient.name)
+        print(data)
         categories = Ingredient.objects.values_list('category', flat=True)
         categories = list(set(categories))
-        code = [1, 2, 3, 4, 5,6]
-        return render(request, 'home.html', {'ingredients' : ingredients, 'code' : code, 'categories' : categories})
+        categories = sorted(categories)
+        print(categories)
+        return render(request, 'cookapp/index.html', {'data' : dict(data)})
     else :
         ingr = Ingredient.objects.values_list('name', flat=True)
         full_list = list(ingr)
         all = Recipe.objects
         print("all : ",all.all())
         print("3")
-        choose = ["쌀밥", "삼겹살", "조밥", "요거트", "된장", "우유", "소면", "잡곡", "등심", "고추장"]
+        # choose = ["쌀밥", "삼겹살", "조밥", "요거트", "된장", "우유", "소면", "잡곡", "등심", "고추장"]
+        choose = request.POST['ingredients'].split(',')
+        print(choose)
         print("4")
         sub = set(full_list) - set(choose)
         print("5")
@@ -27,7 +34,7 @@ def home(request):
             print("r : ",r)
             recipe = recipe.exclude(ingredients__name = r)
         print("end for")
-        print(recipe)
+        # print(recipe)
         print("7")
         add = []
         for r in all.all():
@@ -38,4 +45,4 @@ def home(request):
                 add.append(r)
             print("add : ",add)
         print("8")
-        return render(request, 'list.html', {'all':all, 'recipes':recipe, 'add':add})
+        return render(request, 'cookapp/list.html', {'all':recipe, 'recipes':recipe, 'add':add})
