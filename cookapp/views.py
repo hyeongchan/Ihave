@@ -1,14 +1,19 @@
 from django.shortcuts import render
 from .models import Ingredient, Recipe
+from collections import defaultdict
 
 def home(request):
     if request.method == 'GET':
-        print("one")
-        ingredients = Ingredient.objects
+        ingredients = Ingredient.objects.all().order_by('category')
+        data = defaultdict(list)
+        for ingredient in ingredients:
+            data[ingredient.category].append(ingredient.name)
+        print(data)
         categories = Ingredient.objects.values_list('category', flat=True)
         categories = list(set(categories))
-        code = [1, 2, 3, 4, 5]
-        return render(request, 'home.html', {'ingredients' : ingredients, 'code' : code, 'categories' : categories})
+        categories = sorted(categories)
+        print(categories)
+        return render(request, 'cookapp/index.html', {'data' : dict(data)})
     else :
         print("in")
         ingr = Ingredient.objects.values_list('name', flat=True)
@@ -18,7 +23,9 @@ def home(request):
         all = Recipe.objects
         print("all : ",all.all())
         print("3")
-        choose = ["쌀밥", "삼겹살", "조밥", "요거트", "된장", "우유", "소면", "잡곡", "등심", "고추장"]
+        # choose = ["쌀밥", "삼겹살", "조밥", "요거트", "된장", "우유", "소면", "잡곡", "등심", "고추장"]
+        choose = request.POST['ingredients'].split(',')
+        print(choose)
         print("4")
         sub = set(full_list) - set(choose)
         print("5")

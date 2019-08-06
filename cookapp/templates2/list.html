@@ -1,0 +1,16 @@
+<h1>만들수 있는 요리</h1>
+{% for recipe in recipes %}
+    <a href="{{recipe.url}}">{{recipe.url}}</a>
+    {{recipe.name}}
+    <img src="{{recipe.image_thumbnail.url}}">
+    <br>
+{% endfor %}
+<br><br>
+
+<h1>한가지 재료 더 추가했을때</h1>
+{% for recipe in add %}
+    <a href="{{recipe.url}}">{{recipe.url}}</a>
+    {{recipe.name}}
+    <img src="{{recipe.image_thumbnail.url}}">
+    <br>
+{% endfor %}

@@ -1,0 +1,96 @@
+{% extends "cookapp/base.html" %}
+{% load staticfiles%}
+{% load cookapp_extras %}
+{% block content %}
+<section class="containerBox">   
+    <div class="leftBox">
+    <div class="leftPlease">
+        <select id="leftValues" size="14" multiple>
+
+        {% for category,items in data.items %}
+            <optgroup label="{{category}}">                                
+                {% for ingredient in items %}
+                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient}}">{{ingredient}}</option>
+                {% endfor %}
+            </optgroup>
+        {% endfor %}
+
+        </select>
+    </div>
+    </div>
+    
+    <div class="buttons">
+        <input type="button" class= "bR" id="btnRight" value="담기!" />
+        <input type="button" class= "bL" id="btnLeft" value="빼기!" />
+    </div>
+
+    <div class="rightBox">
+        <select id="rightValues" size="16" multiple></select>
+
+    </div>       
+</section>
+<div class="searchButton" >
+        <button type="submit" id="submit_items">담은 재료로 요리 보기! </button>
+</div>
+<form method="POST" style="visibility:hidden" id="item_form">
+{% csrf_token %}
+</form>
+
+
+
+    <!-- ****** Footer Menu Area End ****** -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    
+
+
+    $("#btnRight").click(function () {
+        var selectedItem = $("#leftValues option:selected");
+        var copyItemLeft = $(selectedItem);
+        if((selectedItem.attr("value1"))==0){   
+            $(selectedItem).attr("value1",1);
+            $(copyItemLeft).clone().appendTo("#rightValues");
+            $(selectedItem).attr("style","background-color:rgb(207,204,204);")
+        }
+    });
+
+
+    $("#btnLeft").click(function () {
+        var selectedItem = $("#rightValues option:selected");
+        var category = selectedItem.attr('category');
+        var id = selectedItem.attr('value2');
+        var children = $("#leftValues").children();
+        children.each(function(){
+            if($(this).attr('label')===category){
+                var childchildren = $(this).children();
+                childchildren.each(function(){
+                    if($(this).attr("value2")==id){
+                        $(this).attr("value1",0);
+                        $(this).attr("style","")
+                    }
+                });
+            }
+        });
+        selectedItem.detach();
+    });
+
+    <!-- 제출 버튼 -->
+    $("#submit_items").click(function(){
+        var form = $('#item_form')
+        var data = new Array();
+        var selectedItem = $("#rightValues").children();
+        selectedItem.each(function(){
+            data.push($(this).attr("name"));
+        });
+        console.log(data);
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "ingredients");
+        hiddenField.setAttribute("value", data);
+        
+        form.append(hiddenField);
+        form.submit();
+    })
+
+</script> 
+{% endblock content %}
