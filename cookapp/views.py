@@ -37,7 +37,7 @@ def home(request):
             print("r : ",r)
             recipe = recipe.exclude(ingredients__name = r)
         print("end for")
-        print(recipe)
+        # print(recipe)
         print("7")
         add = []
         for r in all.all():
