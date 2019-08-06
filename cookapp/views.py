@@ -48,4 +48,4 @@ def home(request):
                 add.append(r)
             print("add : ",add)
         print("8")
-        return render(request, 'cookapp/list.html', {'all':all.all(), 'recipes':recipe, 'add':add})
+        return render(request, 'cookapp/list.html', {'all':recipe.all(), 'recipes':recipe, 'add':add})
