@@ -1,7 +1,8 @@
 <h1>I have</h1>
-{% for index in code %}
+{% for category in categories %}
+    {{category}}
     {% for ingredient in ingredients.all %}
-        {% if index == ingredient.code %}
+        {% if category == ingredient.category %}
             {{ingredient.name}}
         {% endif %}
     {% endfor %}
