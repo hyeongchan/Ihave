@@ -18,3 +18,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+class Ingredient(models.Model):
+	code = models.IntegerField(primary_key = True, null=
