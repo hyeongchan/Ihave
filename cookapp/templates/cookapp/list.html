@@ -38,97 +38,17 @@
     <input type="text"/>
     <section class="archive-area section_padding_80 d-flex justify-content-center">
         <div>
-        <input type="button" onclick="hideandshow1(), changebutton()" class="addButton" value="재료 하나 추가!" id="addButton"/>
+        <input type="button" onclick="hideandshow1(this), changebutton()" class="addButton" value="재료 하나 추가!" id="addButton"/>
         </div>
         <div class="container">
             <div class="row">
-            <!-- Single Post -->
                
-                <div class="col-12 col-md-6 col-lg-4" id="initialMenu" style="display: block" name="menu">
-                    <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
-                        <!-- Post Thumb -->
-                        <div class="post-thumb">
-                            <img src="img/blog-img/2.jpg" alt="">
-                        </div>
-                        <!-- Post Content -->
-                        <div class="post-content">
-                            <div class="post-meta d-flex">
-                                <div class="post-author-date-area d-flex">
-                                    <!-- Post Author -->
-                                    <div class="post-author">
-                                        <a href="#">By Marian</a>
-                                    </div>
-                                    <!-- Post Date -->
-                                    <div class="post-date">
-                                        <a href="#">May 19, 2017</a>
-                                    </div>
-                                </div>
-                                <!-- Post Comment & Share Area -->
-                                <div class="post-comment-share-area d-flex">
-                                    <!-- Post Favourite -->
-                                    <div class="post-favourite">
-                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                    </div>
-                                    <!-- Post Comments -->
-                                    <div class="post-comments">
-                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                    </div>
-                                    <!-- Post Share -->
-                                    <div class="post-share">
-                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" onclick="view_user()">
-                                <h4 class="post-headline">이거 클릭하면 팝업</h4>
-                            </a>
-                            
-                            <div id="popup_user" class="Pstyle popup_user">
-                                <span class="b-close">
-                                        <button class="iKon" onclick="byebye()">x</button>
-                                </span>
-                                     <div class="content2" style=""> 
-                                      <div><h1>김치볶음밥</h1><br></div>
-                                      <div >
-                                            <iframe 
-                                            height="100%" width="100%"
-                                            src="https://www.youtube.com/embed/xp9kwuGBx9s"
-                                            frameborder="0" allow="accelerometer; autoplay; encrypted-media;
-                                             gyroscope; picture-in-picture" allowfullscreen
-                                             style="overflow:hidden;height:400px; width:100%" ></iframe>
-                                          
-                                     </div>
-                                     <div><br><h3>레시피</h3>
-                                        <p>
-                                            안녕하세요. <br><br>
-                                                집에서 할 수 있는 간단한 요리 황금레시피를 알려드리는 일반인입니다.
-                                                
-                                                이번에는 마약 김치볶음밥 만들기를 해보도록 하겠습니다.
-                                                <br><br>
-                                                SNS를 뜨겁게 달구었던 초간단 자취요리인 김치볶음밥인데요.
-                                                일명 마약 김치볶음밥으로 불리는 자취생들의 한끼를 책임지는 필수 레시피 랍니다.
-                                                
-                                                들어간 음식 재료는 다음과 같습니다.
-                                                <br><br>
-                                                기본 재료
-                                                : 김치, 식용유, 설탕 1/2T, 캔 참치, 고춧가루 1T, 다시다 2/3 T, 올리고당 2T, 계란
-                                                <br>
-                                                그럼 일반인 요리의 영상을 통해서 마약 김치볶음밥 만드는 법을 알아보도록 하겠습니다.
-                                                시작하겠습니다^^
-                                        </p>
-                                    </div>
-                                     </div>
-                                     
-                                </div>
-                        </div>
-                    </div>
-                </div>
                 <!--{% init_counter %}-->
                 <!--{% init_delay_counter %}-->
-                {% for recipe in all %}
+                {% for recipe in recipes %}
 
                 <!-- Single Post -->
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4" name="recipe">
                     <div class="single-post wow fadeInUp" data-wow-delay="{% delay_counter %}s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
@@ -137,7 +57,7 @@
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
-                            <div class="post-meta d-flex">
+                            {% comment %} <div class="post-meta d-flex">
                                 <div class="post-author-date-area d-flex">
                                     <!-- Post Author -->
                                     <div class="post-author">
@@ -158,27 +78,28 @@
                                     <div class="post-comments">
                                         <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
                                     </div>
-                                    {% comment %} 공유기능  {% endcomment %}
-                                    {% comment %} <!-- Post Share -->
+                                    <!-- 공유기능--> 
+                                    <!-- Post Share -->
                                     <div class="post-share">
                                         <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                    </div> {% endcomment %}
+                                    </div>
                                 </div>
-                            </div>
-                            <a href="#" onclick="view_user(this)" name="{{forloop.counter}}">
+                            </div> {% endcomment %}
+                            <a href="#" onclick="view_user(this)" name="{{forloop.counter}}" _id="{{recipe.id}}">
                             {% comment %} 레시피 요리 이름 {% endcomment %}
                                 <h6 class="post-headline food-time text-center">걸리는 시간<h6>
                                 <h4 class="post-headline text-center">{{recipe.name}}</h4>
                             </a>
                             <div id="popup_user{{forloop.counter}}" class="Pstyle popup_user">
                                 <span class="b-close">
-                                        <button class="iKon" onclick="byebye()" name="{{forloop.counter}}">x</button>
+                                        <button class="iKon" onclick="byebye(this)" name="{{forloop.counter}}">x</button>
                                 </span>
                                      <div class="content2" style=""> 
                                       <div><h1>김치볶음밥</h1><br></div>
                                       <div >
                                             <iframe 
                                             height="100%" width="100%"
+                                            id="youtube_player_{{forloop.counter}}"
                                             src="{{recipe.convert_youtube}}"
                                             frameborder="0" allow="accelerometer; autoplay; encrypted-media;
                                              gyroscope; picture-in-picture" allowfullscreen
@@ -210,10 +131,11 @@
                     </div>
                 </div>
                 {% endfor %}
-{% for recipe in all %}
+
+                {% for recipe in add %}
 
                 <!-- Single Post -->
-                <div class="col-12 col-md-6 col-lg-4 ">
+                <div class="col-12 col-md-6 col-lg-4" name="add-recipe">
                     <div class="single-post wow fadeInUp" data-wow-delay="{% delay_counter %}s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
@@ -222,7 +144,7 @@
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
-                            <div class="post-meta d-flex">
+                            {% comment %} <div class="post-meta d-flex">
                                 <div class="post-author-date-area d-flex">
                                     <!-- Post Author -->
                                     <div class="post-author">
@@ -243,23 +165,60 @@
                                     <div class="post-comments">
                                         <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
                                     </div>
-                                    {% comment %} 공유기능  {% endcomment %}
-                                    {% comment %} <!-- Post Share -->
+                                    <!-- 공유기능--> 
+                                    <!-- Post Share -->
                                     <div class="post-share">
                                         <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                    </div> {% endcomment %}
+                                    </div>
                                 </div>
-                            </div>
-                            <a href="#">
+                            </div> {% endcomment %}
+                            <a href="#" onclick="view_user(this)" name="{{forloop.counter}}" _id="{{recipe.id}}">
                             {% comment %} 레시피 요리 이름 {% endcomment %}
                                 <h6 class="post-headline food-time text-center">걸리는 시간<h6>
                                 <h4 class="post-headline text-center">{{recipe.name}}</h4>
                             </a>
+                            <div id="popup_user{{forloop.counter}}" class="Pstyle popup_user">
+                                <span class="b-close">
+                                        <button class="iKon" onclick="byebye(this)" name="{{forloop.counter}}">x</button>
+                                </span>
+                                     <div class="content2" style=""> 
+                                      <div><h1>김치볶음밥</h1><br></div>
+                                      <div >
+                                            <iframe 
+                                            height="100%" width="100%"
+                                            id="youtube_player_{{forloop.counter}}"
+                                            src="{{recipe.convert_youtube}}"
+                                            frameborder="0" allow="accelerometer; autoplay; encrypted-media;
+                                             gyroscope; picture-in-picture" allowfullscreen
+                                             style="overflow:hidden;height:400px; width:100%" ></iframe>
+                                          
+                                     </div>
+                                     <div><br><h3>레시피</h3>
+                                        <p>
+                                            안녕하세요. <br><br>
+                                                집에서 할 수 있는 간단한 요리 황금레시피를 알려드리는 일반인입니다.
+                                                
+                                                이번에는 마약 김치볶음밥 만들기를 해보도록 하겠습니다.
+                                                <br><br>
+                                                SNS를 뜨겁게 달구었던 초간단 자취요리인 김치볶음밥인데요.
+                                                일명 마약 김치볶음밥으로 불리는 자취생들의 한끼를 책임지는 필수 레시피 랍니다.
+                                                
+                                                들어간 음식 재료는 다음과 같습니다.
+                                                <br><br>
+                                                기본 재료
+                                                : 김치, 식용유, 설탕 1/2T, 캔 참치, 고춧가루 1T, 다시다 2/3 T, 올리고당 2T, 계란
+                                                <br>
+                                                그럼 일반인 요리의 영상을 통해서 마약 김치볶음밥 만드는 법을 알아보도록 하겠습니다.
+                                                시작하겠습니다^^
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-                <div class="col-12">
+                {% comment %} <div class="col-12">
                     <div class="pagination-area d-sm-flex mt-15">
                         <nav aria-label="#">
                             <ul class="pagination">
@@ -277,7 +236,7 @@
                             <p>Page 1 of 60 results</p>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
 
             </div>
         </div>
@@ -293,6 +252,12 @@
 
 function view_user(elem) {
     var id = elem.getAttribute("name");
+    var _id = elem.getAttribute("_id");
+    $.ajax({ url: "/see/".concat(_id), // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 data: { name: "홍길동" }, // HTTP 요청과 함께 서버로 보낼 데이터 
+    method: "GET", // HTTP 요청 메소드(GET, POST 등) 
+    dataType: "json" // 서버에서 보내줄 데이터의 타입 
+    });
+
     $("#popup_user".concat(id)).bPopup({ 
             modalClose: false,
             opacity: 0.6,
@@ -301,11 +266,21 @@ function view_user(elem) {
     }
 
 function byebye(elem){
+
+
+
     var id = elem.getAttribute("name");
-   $("#popup_user".concat(id)).bPopup().close();
+    $("#youtube_player_".concat(id))[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*'); 
+    $("#popup_user").bPopup().close();
 }
 
-function hideandshow1() {
+function hideandshow1(elem) {
+    var add = elem.getAttribute("value")==="재료 하나 추가!";
+    if(add == true){
+
+    }else{
+        
+    }
     var size =document.getElementsByName("menu").length;
 
     
