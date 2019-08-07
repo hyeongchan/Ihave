@@ -14,7 +14,7 @@ class Recipe(models.Model):
     url = models.URLField(null=True)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     ingredients = models.ManyToManyField(Ingredient)
-    image_thumbnail = ImageSpecField(source = 'image', processors=[ResizeToFill(120,60)])
+    image_thumbnail = ImageSpecField(source = 'image', processors=[ResizeToFill(480,240)])
 
     def __str__(self):
         return self.name
