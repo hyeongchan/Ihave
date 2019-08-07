@@ -36,6 +36,8 @@ class Ingredient(models.Model):
 class Recipe(models.Model):
     name = models.CharField(max_length=255)
     content = models.TextField()
+    time = models.CharField(max_length=10)
+    see = models.IntegerField()
     url = models.URLField()
     image = models.ImageField(upload_to='images/', blank=True)
     ingredients = models.ManyToManyField(

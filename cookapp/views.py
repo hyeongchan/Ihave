@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Ingredient, Recipe
 from collections import defaultdict
-
+from django.http import HttpResponse
 def home(request):
     if request.method == 'GET':
         ingredients = Ingredient.objects.all().order_by('category')
@@ -30,3 +30,12 @@ def home(request):
             if len(sub) == 1:
                 add.append(r)
         return render(request, 'cookapp/list.html', {'all':recipe, 'recipes':recipe, 'add':add})
+
+def see(request,Rid):
+    if request.method == 'POST':
+        up = Recipe.objects.get(id=Rid)
+        up.see = up.see + 1
+        up.see.save()
+    return HttpResponse('')
+
+    
