@@ -21,5 +21,15 @@ def delay_counter():
    return delay_counter.count
 
 @register.simple_tag
-def init_counter():
+def counter():
+   counter.count += 1
+   print("asdf")
+   return counter.count
+
+@register.simple_tag
+def init_delay_counter():
    delay_counter.count=0
+
+@register.simple_tag
+def init_counter():
+   counter.count=0
