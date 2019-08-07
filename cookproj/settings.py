@@ -82,20 +82,6 @@ WSGI_APPLICATION = 'cookproj.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-<<<<<<< HEAD
-     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     },
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'django',
-#        'USER': 'ubuntu',
-#        'PASSWORD': 'gudcks98!',
-#        'HOST': '127.0.0.1',
-#        'PORT': '3306',
-#    },
-=======
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
@@ -108,7 +94,6 @@ DATABASES = {
     #     'HOST': '127.0.0.1',
     #     'PORT': '3306',
     # },
->>>>>>> c44b41e694822b53d706e3cba3a6848e954b3b08
 }
 
 
