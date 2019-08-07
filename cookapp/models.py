@@ -45,3 +45,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+    def convert_youtube(self):
+        return "https://www.youtube.com/embed/"+self.url.split('/')[-1].split('=')[-1]
