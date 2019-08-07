@@ -29,4 +29,4 @@ def home(request):
             sub = set(r.ingredients.values_list('name', flat=True)) - set(choose)
             if len(sub) == 1:
                 add.append(r)
-        return render(request, 'cookapp/list.html', {'all':recipe, 'recipes':recipe, 'add':add})
+        return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add})

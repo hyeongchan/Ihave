@@ -47,4 +47,4 @@ class Recipe(models.Model):
         return self.name
 
     def convert_youtube(self):
-        return "https://www.youtube.com/embed/"+self.url.split('/')[-1].split('=')[-1]
+        return "https://www.youtube.com/embed/"+self.url.split('/')[-1].split('=')[-1] + "?enablejsapi=1&version=3&playerapiid=ytplayer"
