@@ -30,6 +30,8 @@ def home(request):
         print("recipe : ",recipe)
         print("sub : ",sub)
         print("6")
+        if len(sub)==0:
+            recipe = recipe.all()
         for r in sub:
             print("r : ",r)
             recipe = recipe.exclude(ingredients__name = r)
