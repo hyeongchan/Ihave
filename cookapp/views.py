@@ -32,10 +32,9 @@ def home(request):
         return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add})
 
 def see(request,Rid):
-    if request.method == 'POST':
-        up = Recipe.objects.get(id=Rid)
-        up.see = up.see + 1
-        up.see.save()
+    up = Recipe.objects.get(id=Rid)
+    up.see = up.see + 1
+    up.save()
     return HttpResponse('')
 
     
