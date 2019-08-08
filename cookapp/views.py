@@ -36,25 +36,25 @@ def cooklist(request):
 =======
     if(cookie_recipe == 'select'):
         data = request.GET['ingredients']
-        print("try!!!")
+
         exist = 1
 
-        print("데이터 : ",data)
+
         choose = data.split(',')
         choose = map(int, choose)
-        print("choose : ",choose)
+
         sub = set(full_list) - set(choose)
-        print(sub)
-        print(len(sub))
+
+
         recipe = all
-        print("레시피1 : ",recipe.all())
+
         if len(sub) != 0:
-            print("if")
+
             recipe = recipe.exclude(ingredients__in=sub)
         else:
-            print("else")
+
             recipe = recipe.all()
-        print("레시피2 : ",recipe)
+
         add = []
         for r in all.all():
             sub = set(r.ingredients.values_list('id', flat=True)) - set(choose)
@@ -64,25 +64,24 @@ def cooklist(request):
 >>>>>>> 1a29fa9634add8f2e64f10944527ba080d75b6c8
     else:
         data = request.GET.get('ingredients')
-        print("except!!!")
+
         exist = 2
         p = re.compile('\d')
         cookie_recipe = request.COOKIES.get('recipe')
         cookie_recipe = list(map(int, p.findall(cookie_recipe)))
 
-        print("쿠키레시피 : ",cookie_recipe)
         recipe = all.filter(id__in=cookie_recipe)
         add = []
     paginator = Paginator(recipe, 1)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     if exist == 1:
-        print("exist 1")
+
         response = render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add, 'posts':posts, 'ingredients':data})
         response.set_cookie(key='recipe',value=list(recipe.values_list('id', flat=True)))
         return response
     else:
-        print("exist 2")
+
         return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add, 'posts':posts, 'ingredients':data})
 
     
