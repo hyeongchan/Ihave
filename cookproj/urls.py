@@ -23,4 +23,5 @@ urlpatterns = [
     path('', cookapp.views.home, name='home'),
     path('list/', cookapp.views.cooklist, name='list'),
     path('see/<int:Rid>', cookapp.views.see, name='see'),
+    path('add/', cookapp.views.add, name='add'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

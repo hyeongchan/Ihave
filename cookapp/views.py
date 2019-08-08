@@ -26,53 +26,39 @@ def cooklist(request):
     full_list = list(ingr)
     all = Recipe.objects
     if(cookie_recipe == 'select'):
-        data = request.GET['ingredients']
-
         exist = 1
-
-
+        data = request.GET['ingredients']
         choose = data.split(',')
         choose = map(int, choose)
-
         sub = set(full_list) - set(choose)
-
-
         recipe = all
-
         if len(sub) != 0:
-
             recipe = recipe.exclude(ingredients__in=sub)
         else:
-
             recipe = recipe.all()
-
-        add = []
-        for r in all.all():
-            sub = set(r.ingredients.values_list('id', flat=True)) - set(choose)
-            if len(sub) == 1:
-                add.append(r)
+        # add = []
+        # for r in all.all():
+        #     sub = set(r.ingredients.values_list('id', flat=True)) - set(choose)
+        #     if len(sub) == 1:
+        #         add.append(r)
 
     else:
         data = request.GET.get('ingredients')
-
         exist = 2
         p = re.compile('\d')
         cookie_recipe = request.COOKIES.get('recipe')
         cookie_recipe = list(map(int, p.findall(cookie_recipe)))
-
         recipe = all.filter(id__in=cookie_recipe)
-        add = []
     paginator = Paginator(recipe, 1)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     if exist == 1:
-
-        response = render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add, 'posts':posts, 'ingredients':data})
+        response = render(request, 'cookapp/list.html', {'recipes':recipe, 'posts':posts, 'ingredients':data})
         response.set_cookie(key='recipe',value=list(recipe.values_list('id', flat=True)))
         return response
     else:
 
-        return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add, 'posts':posts, 'ingredients':data})
+        return render(request, 'cookapp/list.html', {'recipes':recipe, 'posts':posts, 'ingredients':data})
 
     
 def see(request,Rid):
@@ -81,5 +67,21 @@ def see(request,Rid):
     up.save()
     return HttpResponse('')
 
-
-    
+def add(request):
+    data = request.GET['ingredients']
+    choose = data.split(',')
+    choose = list(map(int, choose))
+    print("choose : ",choose)
+    recipe = []
+    for r in Recipe.objects.all():
+        print(set(choose))
+        print(set(choose) - set([11]), set([11]) - set(choose))
+        sub = set(r.ingredients.values_list('id', flat=True)) - set(choose)
+        print("r ing_list : ", set(r.ingredients.values_list('id', flat=True)), ", sub : ",sub, ", r : ",r)
+        if len(sub) == 1:
+            recipe.append(r)
+    print("recipe : ",recipe)
+    paginator = Paginator(recipe, 1)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'cookapp/list.html', {'recipe':recipe, 'posts':posts, 'ingredients':data})
