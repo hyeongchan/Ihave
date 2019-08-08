@@ -1,0 +1,17 @@
+.section_padding_80{
+    margin-top: 10px !important;
+}
+
+.addButton{
+    margin-left: 3% !important;
+}
+
+.ingredients{
+    margin-left: 3% !important;
+    width: 25% !important;
+}
+
+#popup_user {
+    width: 90% !important;
+    
+}

@@ -52,13 +52,14 @@ def cooklist(request):
     paginator = Paginator(recipe, 1)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
+    ingredients = Ingredient.objects.filter(id__in=map(int,data.split(',')))
+    print(ingredients)
     if exist == 1:
-        response = render(request, 'cookapp/list.html', {'recipes':recipe, 'posts':posts, 'ingredients':data})
+        response = render(request, 'cookapp/list.html', {'recipes':recipe, 'posts':posts, 'ingredients':data, 'ingredients_obj':ingredients})
         response.set_cookie(key='recipe',value=list(recipe.values_list('id', flat=True)))
         return response
     else:
-
-        return render(request, 'cookapp/list.html', {'recipes':recipe, 'posts':posts, 'ingredients':data})
+        return render(request, 'cookapp/list.html', {'recipes':recipe, 'posts':posts, 'ingredients':data, 'ingredients_obj':ingredients})
 
     
 def see(request,Rid):

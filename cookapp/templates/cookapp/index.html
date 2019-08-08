@@ -1,22 +1,26 @@
 {% extends "cookapp/base.html" %}
 {% load staticfiles%}
 {% load cookapp_extras %}
+
+{% block link %}
+    <link rel="stylesheet" media= "(max-width: 640px)" href="{% static 'css/mobile.css' %}">
+{% endblock link %}
 {% block content %}
 <section class="containerBox">   
     <div class="leftBox">
-    <div class="leftPlease">
         <select id="leftValues" size="14" multiple>
 
         {% for category,items in data.items %}
-            <optgroup label="{{category}}">                                
+            <optgroup label="{{category}}" onclick="hideandshow(this)">
                 {% for ingredient in items %}
-                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient.pk}}"><span>{{ingredient.name}}</span></option>
+                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient.id}}"
+                     ><span>{{ingredient.name}}</span>
+                 </option>
                 {% endfor %}
             </optgroup>
         {% endfor %}
 
         </select>
-    </div>
     </div>
     
     <div class="buttons">
@@ -30,10 +34,9 @@
     </div>       
 </section>
 <div class="searchButton" >
-        <button type="submit" id="submit_items">담은 재료로 요리 보기! </button>
+        <button type="submit" class="mobileButton" id="submit_items">담은 재료로 요리 보기! </button>
 </div>
-<form action="{% url 'list' %}" method="GET" style="visibility:hidden" id="item_form">
-{% csrf_token %}
+<form method="GET" style="visibility:hidden" id="item_form" action="{%url 'list'%}">
 </form>
 
 
@@ -42,7 +45,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     
-
+{% comment %} function hideandshow(elem) {
+    $(elem).children().each(function(){
+        if("none"===$(this).css("display")){
+            $(this).css("display","block");
+        }else{
+            $(this).css("display","none");
+        }
+    });
+} {% endcomment %}
 
     $("#btnRight").click(function () {
         var selectedItem = $("#leftValues option:selected");
@@ -56,9 +67,34 @@
 
 
     $("#btnLeft").click(function () {
-        var selectedItem = $("#rightValues option:selected");
+        var selectedItems = $("#rightValues option:selected");
+        var ids = [];
+        var categories = [];
+        selectedItems.each(function(){
+            ids.push($(this).attr('value2'));
+            categories.push($(this).attr('category'))
+        });
+        var size = ids.length;
+        for(var i=0;i<size;i++){
+            var children = $("#leftValues").children();
+            children.each(function(){
+                if($(this).attr('label')===categories[i]){
+                    var childchildren = $(this).children();
+                    childchildren.each(function(){
+                        if($(this).attr("value2")==ids[i]){
+                            $(this).attr("value1",0);
+                            $(this).attr("style","")
+                        }
+                    });
+                }
+            });
+        }
+        console.log(ids);
+        console.log(categories);
+        {% comment %} var selectedItem = $("#rightValues option:selected");
         var category = selectedItem.attr('category');
         var id = selectedItem.attr('value2');
+        console.log(id)
         var children = $("#leftValues").children();
         children.each(function(){
             if($(this).attr('label')===category){
@@ -70,8 +106,8 @@
                     }
                 });
             }
-        });
-        selectedItem.detach();
+        }); {% endcomment %}
+        selectedItems.detach();
     });
 
     <!-- 제출 버튼 -->
