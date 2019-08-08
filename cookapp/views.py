@@ -3,6 +3,8 @@ from .models import Ingredient, Recipe
 from collections import defaultdict
 from django.http import HttpResponse
 
+from django.core.paginator import Paginator
+
 def home(request):
     if request.method == 'GET':
         ingredients = Ingredient.objects.all().order_by('category')
@@ -18,7 +20,11 @@ def cooklist(request):
     ingr = Ingredient.objects.values_list('name', flat=True)
     full_list = list(ingr)
     all = Recipe.objects
-    choose = request.GET['ingredients'].split(',')
+    try:
+        data = request.GET['ingredients']
+    except:
+        data = request.GET.get('ingredients')
+    choose = data.split(',')
     sub = set(full_list) - set(choose)
     recipe = all
     if len(sub) != 0:
@@ -31,7 +37,10 @@ def cooklist(request):
         sub = set(r.ingredients.values_list('name', flat=True)) - set(choose)
         if len(sub) == 1:
             add.append(r)
-    return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add})
+    paginator = Paginator(recipe, 1)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add, 'posts':posts, 'ingredients':data})
 
     
 def see(request,Rid):

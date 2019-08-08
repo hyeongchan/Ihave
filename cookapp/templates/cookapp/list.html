@@ -45,7 +45,7 @@
                
                 <!--{% init_counter %}-->
                 <!--{% init_delay_counter %}-->
-                {% for recipe in recipes %}
+                {% for recipe in posts %}
 
                 <!-- Single Post -->
                 <div class="col-12 col-md-6 col-lg-4" name="recipe">
@@ -192,25 +192,30 @@
                     </div>
                 </div>
                 {% endfor %}
-                {% comment %} <div class="col-12">
+                <div class="col-12">
                     <div class="pagination-area d-sm-flex mt-15">
                         <nav aria-label="#">
                             <ul class="pagination">
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                {% if posts.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    <a class="page-link" href="?page={{posts.previous_page_number}}&ingredients={{ingredients}}"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Prev</a>
                                 </li>
+                                {% endif %}
+                                {% for a in posts.number|make_range:posts.paginator.num_pages %}
+                                <li class="page-item {{posts.number|active:a}}"><a class="page-link" href="?page={{a}}&ingredients={{ingredients}}">{{a}}</a></li>
+                                {% endfor %}
+                                {% if posts.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{posts.next_page_number}}&ingredients={{ingredients}}">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </li>
+                                {% endif %}
                             </ul>
                         </nav>
                         <div class="page-status">
-                            <p>Page 1 of 60 results</p>
+                            <p>Page {{posts.number}} of {{posts.paginator.num_pages}} results</p>
                         </div>
                     </div>
-                </div> {% endcomment %}
+                </div>
 
             </div>
         </div>
