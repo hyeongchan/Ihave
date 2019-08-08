@@ -20,10 +20,7 @@ def cooklist(request):
     ingr = Ingredient.objects.values_list('name', flat=True)
     full_list = list(ingr)
     all = Recipe.objects
-    try:
-        data = request.GET['ingredients']
-    except:
-        data = request.GET.get('ingredients')
+    data = request.GET['ingredients']
     choose = data.split(',')
     sub = set(full_list) - set(choose)
     recipe = all
