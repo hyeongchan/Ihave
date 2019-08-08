@@ -18,7 +18,7 @@ SECTION {
     overflow: auto;
     align-content: center;
 }
-SECTION > DIV {
+SECTION > DIV : not(.buttons_div){
     float: left;
     padding: 4px;
 }
@@ -97,7 +97,7 @@ select::-ms-expand {
     text-align: center;
 }
 
-input[type=button]{
+input[type=button]:not(.ingredients,.addButton){
     -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
 	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
 	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);

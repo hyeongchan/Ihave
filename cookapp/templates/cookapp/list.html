@@ -3,50 +3,27 @@
 {% load staticfiles%}
 {% block link %}
     <link href="{% static 'css/archieve.css' %}" rel="stylesheet">
-    <link href="{% static 'css/mobile_arch.css' %}" rel="stylesheet">
+    <link rel="stylesheet" media= "(max-width: 640px)" href="{% static 'css/mobile_arch.css' %}">
 {% endblock link%}
 {% block content %}
     
 <!-- ****** Breadcumb Area Start ****** -->
-    <div class="breadcumb-area" style="background-image: url(/static/img/bg-img/breadcumb.jpg);">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="bradcumb-title text-center">
-                        <h2>Archive Page</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="breadcumb-nav">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Archive Page</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- ****** Breadcumb Area End ****** -->
 
     <!-- ****** Archive Area Start ****** -->
-    <input type="text"/>
-    <section class="archive-area section_padding_80 d-flex justify-content-center">
-        <div>
-        <input type="button" onclick="hideandshow1(this), changebutton()" class="addButton" value="재료 하나 추가!" id="addButton"/>
-        </div>
+    <section class="archive-area section_padding_80">
+        
         <div class="container">
             <div class="row">
-               
+                <div class="buttons_div">
+                <input type="button" onclick="hideandshow1(), changebutton()" class="addButton" value="재료 하나 추가!" id="addButton"/>
+                {% for ingredient in ingredients_obj %}
+                <input type="button" value="{{ingredient}}" class="ingredients">
+                {% endfor %}
+                </div>
                 <!--{% init_counter %}-->
                 <!--{% init_delay_counter %}-->
-                {% for recipe in recipes %}
+                {% for recipe in posts %}
 
                 <!-- Single Post -->
                 <div class="col-12 col-md-6 col-lg-4" name="recipe">
@@ -121,97 +98,30 @@
 
                 
 
-                {% for recipe in add %}
-
-                <!-- Single Post -->
-                <div class="col-12 col-md-6 col-lg-4" name="add-recipe" style="display:none;">
-                    <div class="single-post wow fadeInUp" data-wow-delay="{% delay_counter %}s">
-                        <!-- Post Thumb -->
-                        <div class="post-thumb">
-                        {% comment %} 썸네일 넣는 공간 {% endcomment %}
-                            <img src="{{recipe.image_thumbnail.url}}" alt="">
-                        </div>
-                        <!-- Post Content -->
-                        <div class="post-content">
-                            <div class="post-meta d-flex">
-                                <div class="post-author-date-area d-flex">
-                                    <!-- Post Author -->
-                                        <div class="post-author">
-                                            <a href="#">관리자</a>
-                                        </div>
-                                    {% comment %} <!-- Post Date -->
-                                    <div class="post-date">
-                                        <a href="#">May 19, 2017</a>
-                                    </div> {% endcomment %}
-                                </div>
-                                <!-- Post Comment & Share Area -->
-                                <div class="post-comment-share-area d-flex">
-                                    <!-- Post Favourite -->
-                                    <div class="post-favourite">
-                                        <a href="#" disabled="disabled"><i class="fa fa-eye" aria-hidden="true"></i>{{recipe.see}}</a>
-                                    </div>
-                                    <!-- Post Comments -->
-                                    {% comment %} <div class="post-comments">
-                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                    </div> {% endcomment %}
-                                    <!-- 공유기능--> 
-                                    <!-- Post Share -->
-                                    <div class="post-share">
-                                        <a target="_blank" href="{{recipe.url}}"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#" onclick="view_user(this)" name="{{forloop.counter}}" _id="{{recipe.id}}">
-                            {% comment %} 레시피 요리 이름 {% endcomment %}
-                                <h6 class="post-headline food-time text-center">{{recipe.time}}<h6>
-                                <h4 class="post-headline text-center">{{recipe.name}}</h4>
-                            </a>
-                            <div id="popup_user{{forloop.counter}}" class="Pstyle popup_user">
-                                <span class="b-close">
-                                        <button class="iKon" onclick="byebye(this)" name="{{forloop.counter}}">x</button>
-                                </span>
-                                     <div class="content2" style=""> 
-                                      <div><h1>{{recipe.name}}</h1><br></div>
-                                      <div class="youtube_div">
-                                            <iframe 
-                                            height="100%" width="100%" class="youtube_player"
-                                            id="youtube_player_{{forloop.counter}}"
-                                            src="{{recipe.convert_youtube}}"
-                                            frameborder="0" allow="accelerometer; autoplay; encrypted-media;
-                                             gyroscope; picture-in-picture" allowfullscreen
-                                             style="overflow:hidden;height:400px; width:100%" ></iframe>
-                                          
-                                     </div>
-                                     <div><br><h3>레시피</h3>
-                                        <p>
-                                            {{recipe.content|linebreaks}}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% comment %} <div class="col-12">
+                <div class="col-12">
                     <div class="pagination-area d-sm-flex mt-15">
                         <nav aria-label="#">
                             <ul class="pagination">
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                {% if posts.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    <a class="page-link" href="?page={{posts.previous_page_number}}&ingredients={{ingredients}}"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Prev</a>
                                 </li>
+                                {% endif %}
+                                {% for a in posts.number|make_range:posts.paginator.num_pages %}
+                                <li class="page-item {{posts.number|active:a}}"><a class="page-link" href="?page={{a}}&ingredients={{ingredients}}">{{a}}</a></li>
+                                {% endfor %}
+                                {% if posts.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{posts.next_page_number}}&ingredients={{ingredients}}">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </li>
+                                {% endif %}
                             </ul>
                         </nav>
                         <div class="page-status">
-                            <p>Page 1 of 60 results</p>
+                            <p>Page {{posts.number}} of {{posts.paginator.num_pages}} results</p>
                         </div>
                     </div>
-                </div> {% endcomment %}
+                </div>
 
             </div>
         </div>

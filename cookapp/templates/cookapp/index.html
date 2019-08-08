@@ -13,8 +13,8 @@
         {% for category,items in data.items %}
             <optgroup label="{{category}}" onclick="hideandshow(this)">
                 {% for ingredient in items %}
-                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient}}"
-                     style="display:none;"><span>{{ingredient}}</span>
+                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient.id}}"
+                     ><span>{{ingredient.name}}</span>
                  </option>
                 {% endfor %}
             </optgroup>
@@ -36,8 +36,7 @@
 <div class="searchButton" >
         <button type="submit" class="mobileButton" id="submit_items">담은 재료로 요리 보기! </button>
 </div>
-<form method="POST" style="visibility:hidden" id="item_form">
-{% csrf_token %}
+<form method="GET" style="visibility:hidden" id="item_form" action="{%url 'list'%}">
 </form>
 
 
