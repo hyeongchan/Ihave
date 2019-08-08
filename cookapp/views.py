@@ -81,4 +81,5 @@ def see(request,Rid):
     up.save()
     return HttpResponse('')
 
+
     
