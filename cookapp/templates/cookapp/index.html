@@ -32,7 +32,7 @@
 <div class="searchButton" >
         <button type="submit" id="submit_items">담은 재료로 요리 보기! </button>
 </div>
-<form method="POST" style="visibility:hidden" id="item_form">
+<form action="{% url 'list' %}" method="GET" style="visibility:hidden" id="item_form">
 {% csrf_token %}
 </form>
 

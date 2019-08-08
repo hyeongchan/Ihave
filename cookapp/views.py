@@ -13,30 +13,31 @@ def home(request):
         categories = list(set(categories))
         categories = sorted(categories)
         return render(request, 'cookapp/index.html', {'data' : dict(data)})
-    else :
-        ingr = Ingredient.objects.values_list('name', flat=True)
-        full_list = list(ingr)
-        all = Recipe.objects
-        choose = request.POST['ingredients'].split(',')
-        sub = set(full_list) - set(choose)
-        recipe = all
-        if len(sub) != 0:
-            for r in sub:
-                recipe = recipe.exclude(ingredients__name = r)
-        else:
-            recipe = recipe.all()
-        add = []
-        for r in all.all():
-            sub = set(r.ingredients.values_list('name', flat=True)) - set(choose)
-            if len(sub) == 1:
-                add.append(r)
-        return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add})
 
+def cooklist(request):
+    ingr = Ingredient.objects.values_list('name', flat=True)
+    full_list = list(ingr)
+    all = Recipe.objects
+    choose = request.GET['ingredients'].split(',')
+    sub = set(full_list) - set(choose)
+    recipe = all
+    if len(sub) != 0:
+        for r in sub:
+            recipe = recipe.exclude(ingredients__name = r)
+    else:
+        recipe = recipe.all()
+    add = []
+    for r in all.all():
+        sub = set(r.ingredients.values_list('name', flat=True)) - set(choose)
+        if len(sub) == 1:
+            add.append(r)
+    return render(request, 'cookapp/list.html', {'recipes':recipe, 'add':add})
+
+    
 def see(request,Rid):
-    if request.method == 'POST':
-        up = Recipe.objects.get(id=Rid)
-        up.see = up.see + 1
-        up.see.save()
+    up = Recipe.objects.get(id=Rid)
+    up.see = up.see + 1
+    up.save()
     return HttpResponse('')
 
     
