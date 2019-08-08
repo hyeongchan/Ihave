@@ -33,3 +33,14 @@ def init_delay_counter():
 @register.simple_tag
 def init_counter():
    counter.count=0
+
+@register.filter
+def make_range(a,b):
+   return filter(lambda a:a>0 and a<=b,range(a-2,a+3))
+
+@register.filter
+def active(a,b):
+   if a==b:
+      return "active"
+   else:
+      return ""
