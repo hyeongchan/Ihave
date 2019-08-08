@@ -1,50 +1,62 @@
 .Pstyle {
    
-    opacity : 0.6;
-    display : none;
-    position : absolute;
+   opacity : 0.6;
+   display : none;
+   position : absolute;
 
-    border : 5px solid slategray !important;
-    padding : 20px !important;
-    color: yellow;
-    
- }
+   border : 5px solid slategray !important;
+   padding : 20px !important;
+   color: yellow;
+   
+}
 
- .b-close {
-    position : absolute;
-    right : 5px;
-    top : 5px;
-    padding : 0px; /* padding : 5px; */
-    display : inline-block;
-    cursor : pointer;
- }
-
-
- .iKon{
-   background-color: lightgrey;
-   border: 0px;
-   width: 30px;
-   height: 30px;
-   text-align: center;
-   margin: 0 auto;
- }
+.b-close {
+   position : absolute;
+   right : 5px;
+   top : 5px;
+   padding : 0px; /* padding : 5px; */
+   display : inline-block;
+   cursor : pointer;
+}
 
 
-#popup_user,.popup_user {
-   overflow-x: auto;
-   height: 100%;
-   width: 50%;
-   text-align: 0 auto !important;
-   align-content: 0 auto;
-   top:0px !important;
+.iKon{
+  background-color: lightgrey;
+  border: 0px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin: 0 auto;
+}
 
-   background-color: whitesmoke ;
+
+#popup_user {
+  overflow-x: auto;
+  height: 100%;
+  width: 50%;
+  text-align: 0 auto !important;
+  align-content: 0 auto;
+  top:0px !important;
+
+  background-color: whitesmoke ;
 }
 
 .addButton{
-   background-color: lightgray;
-   padding: 10px;  
-   border : 5px solid slategray !important;
-   margin-left: 20%;
-   margin-bottom: 3%;
+  background-color: lightgray;
+  padding: 10px;  
+  border : 5px solid slategray !important;
+  margin-left: 20%;
+  margin-bottom: 3%;
+}
+
+.ingredients{
+  margin-left: 2vw;
+  background-color: slategray;
+  padding: 10px;  
+  border : 5px solid lightgray !important;
+  margin-bottom: 3%;
+  border-radius: 25px;
+  width: 100px;
+  color :lightgrey;
+  text-align: center;
 }

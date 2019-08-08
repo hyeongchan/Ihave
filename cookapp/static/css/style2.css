@@ -1,28 +1,6 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 /* .hn{font-family: .hn{font-family: 'Hanna', sans-serif;}} */
-@font-face {
-	font-family: 'Binggrae';
-    src:url('/static/fonts/Binggrae.otf') format('opentype'),
-        url('/static/fonts/Binggrae.ttf') format('truetype');
-	font-weight: normal;
-}
-
-@font-face {
-	font-family: 'Binggrae';
-	src:url('/static/fonts/Binggrae-Bold.otf') format('opentype'),
-        url('/static/fonts/Binggrae-Bold.ttf') format('truetype');
-	font-weight: bold;
-}
-
-a>h4.post-headline,.food-time{
-    font-family: 'Binggrae';
-}
-
-a>.food-time{
-    margin-top: 5px;
-}
-
-    body{
+body{
     font-family: 'Hanna', sans-serif;
     padding-bottom: 100px;
     margin: 0;
@@ -182,3 +160,32 @@ button[type="submit"]{
     color: rgba(255, 255, 255, 0.85);
 	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
 }
+
+
+#pattern-switcher {
+	width: 120px;
+	background-color: #fc6c3f;
+	position: fixed;
+	top: 15%;
+	z-index: 9999;
+	cursor: pointer;
+	height: 50px;
+    right: 0;
+    color: #fff;
+	font-size: 12px;
+	line-height: 50px;
+	text-align: center;
+	text-transform: uppercase;
+    letter-spacing: 1px;
+    -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+}
+
+#pattern-switcher.pattern-remove {
+    right: -200px;
+}
+
+#pattern-switcher:hover {
+	background-color: #e3410e;
+}
+
