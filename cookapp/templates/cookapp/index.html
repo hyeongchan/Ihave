@@ -10,7 +10,7 @@
         {% for category,items in data.items %}
             <optgroup label="{{category}}">                                
                 {% for ingredient in items %}
-                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient}}"><span>{{ingredient}}</span></option>
+                <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient.pk}}"><span>{{ingredient.name}}</span></option>
                 {% endfor %}
             </optgroup>
         {% endfor %}
