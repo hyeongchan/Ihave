@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="buttons_div">
-                <input type="button" onclick="hideandshow1(), changebutton()" class="addButton" value="재료 하나 추가!" id="addButton"/>
+                <input type="button" onclick="hideandshow1(), changebutton()" class="addButton" value="{{request.path|value}}" id="addButton"/>
                 {% for ingredient in ingredients_obj %}
                 <input type="button" value="{{ingredient}}" class="ingredients">
                 {% endfor %}
@@ -162,21 +162,10 @@ function byebye(elem){
 }
 
 function hideandshow1(elem) {
-    var add = elem.getAttribute("value")==="재료 하나 추가!";
-    if(add == true){
-        document.getElementsByName("recipe").forEach(function(elem){
-            elem.style.display = "none";
-        });
-        document.getElementsByName("add-recipe").forEach(function(elem){
-            elem.style.display = "block";
-        });
+    if({{request.path}} == '/list/'){
+        location.href='/add?ingredients={{ingredients}}';
     }else{
-        document.getElementsByName("recipe").forEach(function(elem){
-            elem.style.display = "block";
-        });
-        document.getElementsByName("add-recipe").forEach(function(elem){
-            elem.style.display = "none";
-        });    
+        location.href='/list/?ingredients={{ingredients}}';
     }
 
 

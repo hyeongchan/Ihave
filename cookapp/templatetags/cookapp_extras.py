@@ -44,3 +44,10 @@ def active(a,b):
       return "active"
    else:
       return ""
+
+@register.filter
+def value(a):
+   if a=="/list/":
+      return "재료 하나 추가!"
+   else:
+      return "원래 재료 보기!"

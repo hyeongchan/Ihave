@@ -81,8 +81,9 @@ def add(request):
         print("r ing_list : ", set(r.ingredients.values_list('id', flat=True)), ", sub : ",sub, ", r : ",r)
         if len(sub) == 1:
             recipe.append(r)
+    ingredients = Ingredient.objects.filter(id__in=map(int,data.split(',')))
     print("recipe : ",recipe)
     paginator = Paginator(recipe, 3)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request, 'cookapp/list.html', {'recipe':recipe, 'posts':posts, 'ingredients':data})
+    return render(request, 'cookapp/list.html', {'recipe':recipe, 'posts':posts, 'ingredients':data, 'ingredients_obj':ingredients})
