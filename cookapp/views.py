@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Ingredient, Recipe
 from collections import defaultdict
 from django.http import HttpResponse
+
 def home(request):
     if request.method == 'GET':
         ingredients = Ingredient.objects.all().order_by('category')
