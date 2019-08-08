@@ -81,7 +81,7 @@ def add(request):
         if len(sub) == 1:
             recipe.append(r)
     print("recipe : ",recipe)
-    paginator = Paginator(recipe, 1)
+    paginator = Paginator(recipe, 3)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request, 'cookapp/list.html', {'recipe':recipe, 'posts':posts, 'ingredients':data})
