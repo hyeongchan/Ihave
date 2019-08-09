@@ -67,5 +67,3 @@ def see(request,Rid):
     up.see = up.see + 1
     up.save()
     return HttpResponse('')
-
-    
