@@ -43,6 +43,8 @@ class Recipe(models.Model):
         Ingredient
     )
 
+    def thumbnail(self):
+        return "https://img.youtube.com/vi/" + self.url.split('=')[-1] + "/0.jpg";
     def __str__(self):
         return self.name
 
