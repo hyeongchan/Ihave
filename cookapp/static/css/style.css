@@ -26,16 +26,17 @@
 /* ***** Fonts ***** */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700|Quicksand:300,400,500,700|Shadows+Into+Light+Two');
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
 /* ***** Import CSS ***** */
 
-@import 'bootstrap/bootstrap.min.css';
-@import 'others/animate.css';
-@import 'others/magnific-popup.css';
-@import 'others/meanmenu.min.css';
-@import 'others/owl.carousel.min.css';
-@import 'others/font-awesome.min.css';
-@import 'others/pe-icon-7-stroke.css';
+@import '/static/css/bootstrap/bootstrap.min.css';
+@import '/static/css/others/animate.css';
+@import '/static/css/others/magnific-popup.css';
+@import '/static/css/others/meanmenu.min.css';
+@import '/static/css/others/owl.carousel.min.css';
+@import '/static/css/others/font-awesome.min.css';
+@import '/static/css/others/pe-icon-7-stroke.css';
 
 /* --------------------
 :: 1.0 Base CSS
@@ -47,6 +48,8 @@
 }
 
 body {
+       background-color: #ebf3f3;
+    font-family: 'Hanna', sans-serif;
     position: relative;
     z-index: auto;
 }
@@ -57,7 +60,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Hanna', sans-serif;
     font-weight: 700;
     color: #232d37;
     line-height: 1.25;
@@ -438,7 +441,7 @@ li {
 -------------------- */
 
 .logo_area .yummy-logo {
-    font-family: 'Hanna', cursive;
+    font-family: 'Shadows Into Light Two', cursive;
     font-size: 60px;
     margin-bottom: 0;
     padding: 35px 0 20px 0;
@@ -553,7 +556,7 @@ li {
     height: 100%;
     top: 0;
     left: 0;
-    cursor: url(../img/core-img/back.png), auto !important;
+    cursor: url(/static/img/core-img/back.png), auto !important;
     z-index: 9;
 }
 
@@ -564,7 +567,7 @@ li {
     height: 100%;
     top: 0;
     right: 0;
-    cursor: url(../img/core-img/next.png), auto !important;
+    cursor: url(/static/img/core-img/next.png), auto !important;
 }
 
 /* --------------------
@@ -794,7 +797,7 @@ li {
     height: 100%;
     top: 0;
     left: 0;
-    cursor: url(../img/core-img/back.png), auto !important;
+    cursor: url(/static/img/core-img/back.png), auto !important;
     z-index: 9;
 }
 
@@ -805,7 +808,7 @@ li {
     height: 100%;
     top: 0;
     right: 0;
-    cursor: url(../img/core-img/next.png), auto !important;
+    cursor: url(/static/img/core-img/next.png), auto !important;
 }
 
 
@@ -1425,13 +1428,7 @@ li {
 }
 
 /* Bg Pattern */
-.bg-pattern {
-    background-attachment: fixed;
-    background-position: center center;
-    background-image: url(../img/bg-img/bg-pattern.jpg);
-    position: relative;
-    background-size: cover;
-    z-index: 1;
+
 }
 .bg-pattern:after {
     position: absolute;
@@ -1485,4 +1482,48 @@ li {
 	z-index: 99999;
 	color: #fff;
 	cursor: pointer;
+}
+
+
+.Pstyle {
+   
+    opacity : 0.6;
+    display : none;
+    position : absolute;
+
+    border : 5px solid slategray !important;
+    padding : 20px !important;
+    color: yellow;
+    
+ }
+
+ .b-close {
+    position : absolute;
+    right : 5px;
+    top : 5px;
+    padding : 0px; /* padding : 5px; */
+    display : inline-block;
+    cursor : pointer;
+ }
+
+
+ .iKon{
+   background-color: lightgrey;
+   border: 0px;
+   width: 30px;
+   height: 30px;
+   text-align: center;
+   margin: 0 auto;
+ }
+
+
+#popup_user {
+   overflow-x: auto;
+   height: 100%;
+   width: 50%;
+   text-align: 0 auto !important;
+   align-content: 0 auto;
+   top:0px !important;
+
+   background-color: whitesmoke ;
 }

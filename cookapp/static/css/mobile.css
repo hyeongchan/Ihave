@@ -1,0 +1,103 @@
+body{
+    height: 100vh !important;  
+    padding: 0 !important;
+    font-size: 12pt !important;
+ 
+ }
+ .top_header_area{
+     height: 5vh !important;
+ }
+ #mobileBye{
+     display: none !important;
+ }
+ 
+ 
+ 
+ .header_area{
+     height: 15vh !important;
+ } 
+ select{
+     font-size: 11pt !important;
+ }
+ .containerBox{
+     height: 80vh !important;
+     font-size: 1em !important;
+ }
+ .leftBox{
+     width: 95vw !important; 
+     height: 30vh !important;
+     padding : 0 !important;
+     font-size: 12px !important;
+     overflow-y: scroll !important;
+     align-content: center !important;
+ }
+ #leftValues{
+     height: 100% !important;
+ }
+ 
+ .rightBox{
+     width: 95vw!important;
+     height: 30vh !important;
+     padding : 0 !important;
+     font-size: 12px !important;
+     overflow-y: scroll !important;
+     left: 2.5vw !important;
+ }
+ 
+ #rightValues{
+     height: 100% !important;
+ }
+ 
+ .buttons{
+     margin: 0 auto !important;
+     position: relative !important;
+     top : 0 !important;
+     height: 7vh !important;
+     border : 0!important;
+     left: 0 !important;
+     right: 0 !important;
+     width: 95vw !important;
+     bottom: 0 !important;
+ 
+     padding: 1% !important;
+ }
+ .bR{
+     height: 100% !important;
+     position: relative !important;
+     margin: 0 auto !important;
+     padding: 3% 7%!important;
+     float: left !important;
+     display:  table !important;
+     line-height: 100% !important;
+     font-size: 0.8em !important;
+ }
+ .bL{
+     position: relative !important;
+     margin: 0 auto !important;
+     padding: 3% 7% !important;
+     height: 100% !important;
+     line-height: 100% !important;
+ 
+     font-size: 0.8em !important;
+     float: right !important;
+     display:  table !important;
+ }
+ .searchButton{
+     position: relative !important;
+     width: 10vw;
+     height: 7vh !important;
+     line-height: 50px !important;
+     vertical-align: center !important;
+     padding-bottom: 2vh !important;
+     align-content:0 auto;
+     bottom: 10vh !important;
+     margin-right: auto !important;
+ }
+ .mobileButton{
+     bottom: 10px !important;
+     height: 5vh !important;
+     font-size: 0.7em !important;
+     line-height: 100% !important;
+ 
+     align-content: center !important;
+ }
