@@ -39,11 +39,9 @@ class Recipe(models.Model):
     time = models.CharField(max_length=10)
     see = models.IntegerField()
     url = models.URLField()
-    image = models.ImageField(upload_to='images/', blank=True)
     ingredients = models.ManyToManyField(
         Ingredient
     )
-    image_thumbnail = ImageSpecField(source = 'image', processors=[ResizeToFill(480,240)])
 
     def __str__(self):
         return self.name

@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 from django.core.paginator import Paginator
 import re
+from django.contrib import messages
 
 def home(request):
     if request.method == 'GET':
@@ -21,27 +22,24 @@ def home(request):
 
 def cooklist(request):
     cookie_recipe = request.COOKIES.get('recipe')
-    # print(cookie_recipe)
     ingr = Ingredient.objects.values_list('id', flat=True)
     full_list = list(ingr)
     all = Recipe.objects
     if(cookie_recipe == 'select'):
         exist = 1
         data = request.GET['ingredients']
-        choose = data.split(',')
-        choose = map(int, choose)
-        sub = set(full_list) - set(choose)
-        recipe = all
-        if len(sub) != 0:
-            recipe = recipe.exclude(ingredients__in=sub)
+        if not data :
+            data = ""
+            recipe = Recipe.objects.none()
         else:
-            recipe = recipe.all()
-        # add = []
-        # for r in all.all():
-        #     sub = set(r.ingredients.values_list('id', flat=True)) - set(choose)
-        #     if len(sub) == 1:
-        #         add.append(r)
-
+            choose = data.split(',')
+            choose = map(int, choose)
+            sub = set(full_list) - set(choose)
+            recipe = all
+            if len(sub) != 0:
+                recipe = recipe.exclude(ingredients__in=sub)
+            else:
+                recipe = recipe.all()
     else:
         data = request.GET.get('ingredients')
         exist = 2
@@ -52,8 +50,10 @@ def cooklist(request):
     paginator = Paginator(recipe, 1)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    ingredients = Ingredient.objects.filter(id__in=map(int,data.split(',')))
-    print(ingredients)
+    if data == "" :
+        ingredients = Ingredient.objects.none()
+    else:
+        ingredients = Ingredient.objects.filter(id__in=map(int,data.split(',')))
     if exist == 1:
         response = render(request, 'cookapp/list.html', {'recipes':recipe, 'posts':posts, 'ingredients':data, 'ingredients_obj':ingredients})
         response.set_cookie(key='recipe',value=list(recipe.values_list('id', flat=True)))
@@ -70,18 +70,22 @@ def see(request,Rid):
 
 def add(request):
     data = request.GET['ingredients']
-    choose = data.split(',')
-    choose = list(map(int, choose))
+    if not data:
+        data = ""
+        choose = []
+    else :
+        choose = data.split(',')
+        choose = list(map(int, choose))
     print("choose : ",choose)
     recipe = []
     for r in Recipe.objects.all():
-        print(set(choose))
-        print(set(choose) - set([11]), set([11]) - set(choose))
         sub = set(r.ingredients.values_list('id', flat=True)) - set(choose)
-        print("r ing_list : ", set(r.ingredients.values_list('id', flat=True)), ", sub : ",sub, ", r : ",r)
         if len(sub) == 1:
             recipe.append(r)
-    ingredients = Ingredient.objects.filter(id__in=map(int,data.split(',')))
+    if data == "" :
+        ingredients = Ingredient.objects.none()
+    else :
+        ingredients = Ingredient.objects.filter(id__in=map(int,data.split(',')))
     print("recipe : ",recipe)
     paginator = Paginator(recipe, 3)
     page = request.GET.get('page')

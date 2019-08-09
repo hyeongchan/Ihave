@@ -23,16 +23,19 @@
                 </div>
                 <!--{% init_counter %}-->
                 <!--{% init_delay_counter %}-->
-                {% for recipe in posts %}
+
                 <div class="container">
                         <div class="row">
-                <!-- Single Post -->
+                {% for recipe in posts %}
+                            <!-- Single Post -->
                 <div class="col-12 col-md-6 col-lg-4" name="recipe">
                     <div class="single-post wow fadeInUp" data-wow-delay="{% delay_counter %}s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
                         {% comment %} 썸네일 넣는 공간 {% endcomment %}
-                            <img src="{{recipe.image_thumbnail.url}}" alt="">
+                            <!-- <img src="{{recipe.image_thumbnail.url}}" alt=""> -->
+                            <img id="img_from_url" src="{{recipe.url}}">
+                            
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
@@ -134,6 +137,13 @@
 <script src="{% static 'js/jquery/jquery.bpopup.js' %}"></script>
 <script src="{% static 'js/jquery/jquery.bpopup.min.js' %}"></script>
 <script>
+function thumbnail(){
+    url = $("#img_from_url").attr('src');
+    var link = "https://img.youtube.com/vi/"+/(?<==)\w+/.exec(url)+"/0.jpg";
+    $("#img_from_url").attr("src",link);
+}
+thumbnail();
+
 
 
 function view_user(elem) {
@@ -185,6 +195,10 @@ $( document ).ready( function() {
         $(".youtube_player").css("height",(width/2-50)*9/16);
     } );
 } );
+
+{% if message %}
+    alert({{message}})
+{% endif %}
 
 </script>
 {% endblock script%}
