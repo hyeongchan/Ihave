@@ -2,12 +2,12 @@
 {% load cookapp_extras %}
 {% load staticfiles%}
 {% block link %}
-    <link href="{% static 'css/archieve.css' %}" rel="stylesheet">
     <link rel="stylesheet" media= "(max-width: 640px)" href="{% static 'css/mobile_arch.css' %}">
 {% endblock link%}
 {% block content %}
 <!-- ****** Breadcumb Area Start ****** -->
     <!-- ****** Breadcumb Area End ****** -->
+    <link href="{% static 'css/archieve.css' %}" rel="stylesheet">
 
     <!-- ****** Archive Area Start ****** -->
     <section class="archive-area section_padding_80">
