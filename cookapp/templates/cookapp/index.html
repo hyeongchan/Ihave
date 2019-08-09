@@ -6,12 +6,13 @@
     <link rel="stylesheet" media= "(max-width: 640px)" href="{% static 'css/mobile.css' %}">
 {% endblock link %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/startpage1.css' %}">
 <section class="containerBox">   
     <div class="leftBox">
         <select id="leftValues" size="14" multiple>
 
         {% for category,items in data.items %}
-            <optgroup label="{{category}}" onclick="hideandshow(this)">
+            <optgroup label="{{category}}" >
                 {% for ingredient in items %}
                 <option category="{{category}}" value1="0" value2="{{forloop.counter}}" name="{{ingredient.id}}"
                      ><span>{{ingredient.name}}</span>
@@ -29,8 +30,11 @@
     </div>
 
     <div class="rightBox">
-        <select id="rightValues" size="16" multiple></select>
+        <select id="rightValues" size="16" multiple>
+        <!-- <optgroup label="base"> -->
 
+                <!-- <option disabled><div width="100%">------------</div></option> -->
+            </select>
     </div>       
 </section>
 <div class="searchButton" >
@@ -45,15 +49,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     
-function hideandshow(elem) {
-    $(elem).children().each(function(){
-        if("none"===$(this).css("display")){
-            $(this).css("display","block");
-        }else{
-            $(this).css("display","none");
-        }
-    });
-}
+// function hideandshow(elem) {
+//     $(elem).children().each(function(){
+//         if("none"===$(this).css("display")){
+//             $(this).css("display","block");
+//         }else{
+//             $(this).css("display","none");
+//         }
+//     });
+// }
 
     $("#btnRight").click(function () {
         var selectedItem = $("#leftValues option:selected");

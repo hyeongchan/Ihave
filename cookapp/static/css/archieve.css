@@ -42,6 +42,7 @@
 }
 
 .addButton{
+  margin-left: 2vw;
   background-color: lightgray;
   padding: 10px;  
   border : 5px solid slategray !important;
@@ -58,4 +59,9 @@
   width: 100px;
   color :lightgrey;
   text-align: center;
+}
+
+.buttons_div{
+  width: 70vw;
+  margin-left: 15vw;
 }

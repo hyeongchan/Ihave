@@ -1,0 +1,191 @@
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+/* .hn{font-family: .hn{font-family: 'Hanna', sans-serif;}} */
+body{
+    font-family: 'Hanna', sans-serif;
+    padding-bottom: 100px;
+    margin: 0;
+    background-color: #ebf3f3;
+    font-size: 14px;
+}
+
+SELECT, INPUT[type="text"] {
+    width: 160px;
+    box-sizing: border-box;
+}
+SECTION {
+    padding: 8px;
+    background-color: #f0f0f0;
+    overflow: auto;
+    align-content: center;
+}
+SECTION > DIV {
+    float: left;
+    padding: 4px;
+}
+SECTION > DIV + DIV {
+    width: 40px;
+    text-align: center;
+}
+
+.containerBox {
+    background-color: transparent; 
+    background-blend-mode: lighten;
+    position: relative;
+
+}
+
+select{
+    margin: 0px auto;
+    width:  100%;
+    font-size :20px;
+    height: 600px;
+
+
+    padding: .18em .5em;
+    border: 3px solid #999;
+    background: url('arrow.jpg') no-repeat 95% 50%;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+
+}
+
+select::-ms-expand {
+    display: none;
+    }
+    
+    
+
+.leftBox{
+  
+        width:50%;
+    padding-left:20%;
+    padding-right:10%;
+        background-color: transparent;
+        border-radius: 3px;
+        overflow: hidden;
+        align-content: right;
+}
+
+
+.rightBox{
+ 
+    width: 50%;
+    padding-right: 20%;
+    padding-left: 10%;
+    background:transparent;
+    border-radius: 3px;
+    overflow: hidden;    
+
+    align-content: right;
+
+}
+
+.buttons{
+    position: absolute;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    top:50%;
+    vertical-align: middle;
+    top:40%;
+    bottom: 40%;
+    left:40%;
+    right: 40%;
+    text-align: center;
+}
+
+input[type=button]{
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	display: block;
+	margin: 20px auto;
+	max-width: 180px;
+	text-decoration: none;
+	border-radius: 4px;
+    padding: 20px 30px;
+    background-color:transparent;
+}
+
+.bR {
+    color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+.bR:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
+
+.bL {
+    color: rgba(30, 22, 54, 0.6);
+	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset; 
+}
+
+.bL:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+}
+
+button[type="submit"]{
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360); 
+	text-decoration: none;
+	border: transparent;
+    background-color:transparent;
+    font-size: 20px;
+}
+
+.searchButton {
+    display: block;
+    bottom: 100%;
+    line-height: 80px;
+    text-align: center;
+    color: rgba(30, 22, 54, 0.6);
+    box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    width: 30%;
+  
+    margin: 0 auto;
+}
+
+.searchButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(30, 22, 54, 0.7) 0 80px 0px 2px inset;
+}
+
+
+#pattern-switcher {
+	width: 120px;
+	background-color: #fc6c3f;
+	position: fixed;
+	top: 15%;
+	z-index: 9999;
+	cursor: pointer;
+	height: 50px;
+    right: 0;
+    color: #fff;
+	font-size: 12px;
+	line-height: 50px;
+	text-align: center;
+	text-transform: uppercase;
+    letter-spacing: 1px;
+    -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+}
+
+#pattern-switcher.pattern-remove {
+    right: -200px;
+}
+
+#pattern-switcher:hover {
+	background-color: #e3410e;
+}
+
