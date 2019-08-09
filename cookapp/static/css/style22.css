@@ -41,6 +41,7 @@ SECTION {
     align-content: center;
 }
 SECTION > DIV {
+    /* ㅇㄴ라ㅓㄴ */
     float: left;
     padding: 4px;
 }
