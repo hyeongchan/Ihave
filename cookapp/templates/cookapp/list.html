@@ -10,16 +10,18 @@
     <link href="{% static 'css/archieve.css' %}" rel="stylesheet">
 
     <!-- ****** Archive Area Start ****** -->
-    <section class="archive-area section_padding_80">
+    <section class="archive-area section_padding_80" style="background-color:#ebf3f3;">
         
 
                 <div class="buttons_div">
                 <div>    
                     <input type="button" onclick="hideandshow1(), changebutton()" class="addButton" value="{{request.path|value}}" id="addButton"/>
                 </div>
-                {% for ingredient in ingredients_obj %}
-                <input type="button" value="{{ingredient}}" class="ingredients">
-                {% endfor %}
+                <div class="ingredientBox">
+                    {% for ingredient in ingredients_obj %}
+                    <input type="button" value="{{ingredient}}" class="ingredients">
+                    {% endfor %}
+                </div>
                 </div>
                 <!--{% init_counter %}-->
                 <!--{% init_delay_counter %}-->

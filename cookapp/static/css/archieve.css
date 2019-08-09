@@ -1,6 +1,11 @@
+.body{
+  
+  background-color:#ebf3f3 !important; 
+}
+
 .container{
   width: 70vw !important;
-  margin-left: 15vw !important;
+  margin: 0 auto !important;
 }
 
 .Pstyle {
@@ -69,6 +74,10 @@
 }
 
 .buttons_div{
-  width: 70vw;
-  margin-left: 15vw;
+  width: 60vw;
+  margin: 0 auto;
+  height: 20vh;
+  overflow: scroll;
+  margin-bottom: 5vh;
+  background-color:#ebf3f3;
 }
