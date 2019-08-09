@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{% static 'css/startpage1.css' %}">
 <section class="containerBox">   
     <div class="leftBox">
-        <select id="leftValues" size="14" multiple>
+        <select id="leftValues"  multiple>
 
         {% for category,items in data.items %}
             <optgroup label="{{category}}" >
@@ -30,7 +30,11 @@
     </div>
 
     <div class="rightBox">
-        <select id="rightValues" size="16" multiple>
+        <div  class="jiho" style="border: 3px solid #999">  
+            <h6>기본 필수 재료</h6>
+              소금/간장/설탕/고춧가루/기름
+        </div>
+        <select id="rightValues"  multiple>
         <!-- <optgroup label="base"> -->
 
                 <!-- <option disabled><div width="100%">------------</div></option> -->
