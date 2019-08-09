@@ -91,3 +91,6 @@ def add(request):
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request, 'cookapp/list.html', {'recipe':recipe, 'posts':posts, 'ingredients':data, 'ingredients_obj':ingredients})
+
+def about(request):
+    return render(request, 'cookapp/about.html')

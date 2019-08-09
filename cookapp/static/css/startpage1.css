@@ -189,3 +189,7 @@ button[type="submit"]{
 	background-color: #e3410e;
 }
 
+.container{
+    width: 100vw !important;
+    margin: 0 auto !important;
+}
